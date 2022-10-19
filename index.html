@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links css -->
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cards.css">
+
+    <title>Jogo memoria rick And Morty</title>
+</head>
+<body>
+    <form action="" class="login-form">
+        <header class="login-header">
+            <div class="image-celebro">
+                <img src="image/celebro.png" alt="Imagem Celebro">
+            </div>
+            <h1>Memory Game</h1>
+        </header>
+
+        <div class="box__input">
+            <input type="text" name="nameJogador" id="nameJogador" placeholder="Name">
+            <button class="btnPlay">Play</button>
+        </div>
+    </form>
+
+    <section class="root">
+        <header class="header">
+            <div>Nome: <span id="id_jogador"></span></div>
+            <div>Tempo:<span id="time"></span></div>
+        </header>
+
+        <div class="box-cards"></div>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root{
+    --font-press-Start: 'Press Start 2P', sans-serif;
+    --color-gray: #dfe4ea;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+    border: none;
+    text-transform: capitalize;
+    font-family: var(--font-press-Start);
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body{
+    min-height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)), url(../image/imagem-fundo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

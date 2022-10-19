@@ -1,0 +1,153 @@
+.root{
+    min-height: 100vh;
+    max-width: 45%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.root.active{
+    display: block;
+    transition: 1s linear;
+}
+
+.header{
+    margin:10px 0 15px 0;
+    height: 60px;
+    width: 100%;
+    border-radius: 10px;
+    background: #d8d6d679;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+}
+
+.header div{
+    font-size: 15px;
+    color: #613619;
+}
+
+.box-cards{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.box-cards .card{
+    margin: 5px;
+    width: 100px;
+    height: 130px;
+    cursor: pointer;
+}
+
+.box-cards .card .front,
+.box-cards .card .back{
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    object-fit: contain;
+}
+
+.box-cards .card .front img,
+.box-cards .card .back img{
+    height: 100%;
+    width: 100%;
+}
+
+.box-cards .card{
+    position: relative;
+}
+
+.box-cards .card .front,
+.box-cards .card .back{
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: transform 1s linear ;
+}
+
+.box-cards .card .front{
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.box-cards .card .back{
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.box-cards .card .front.ativo{
+    transform: perspective(600px) rotateY(-180deg);
+}
+
+.box-cards .card .back.ativo{
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.box-cards .card .front.semClick{
+    pointer-events: none;
+}
+
+.box-cards .card .back.semClick{
+    pointer-events: none;
+}
+
+@media (max-width: 1250px) {
+    .root{
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .root{
+        max-width: 60%;
+    }
+
+    .box-cards .card{
+        width: 90px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 940px) {
+    .root{
+        max-width: 55%;
+    }
+
+    .header div{
+        font-size: 10px;
+    }
+
+    .box-cards .card{
+        width: 87px;
+        height: 117px;
+    }
+}
+
+@media (max-width: 768px) {
+    .root{
+        margin: 5px 0;
+        max-width: 75%;
+    }
+}
+
+@media (max-width: 425px) {
+    .root{
+        margin: 5px 0;
+        max-width: 95%;
+    }
+
+    .box-cards .card{
+        width: 70px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 425px) {
+    .box-cards .card{
+        width: 61px;
+        height: 91px;
+    }
+}
+
