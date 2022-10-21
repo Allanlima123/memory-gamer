@@ -8,66 +8,31 @@ const root = document.querySelector(".root");
 
 const boxCards = document.querySelector(".box-cards");
 const formLogin = document.querySelector(".login-form");
-const id_jogador = document.querySelector("#id_jogador");
-const timePartida = document.querySelector("#time");
+const name_jogador = document.querySelectorAll(".id_jogador");
+const timePartida = document.querySelectorAll(".time");
+const recarregar = document.querySelector(".reload-gamer");
+
+const windowModal = document.querySelector("#box-modal");
 
 let tempo = 0;
 let cardsClosed = 10;
 let cro;
 
+// let jogadores = [];
 let arrPersonagem = [];
 let posicaoCard = [];
-
-const buscarDadosPromises = () => Array(10)
-    .fill()
-    .map(async (_, index) => {
-        const retorno = await fetch(getRickAndMory(index + 1));
-        return await retorno.json();
-    })
-
-const rickAndMoryPromisses = buscarDadosPromises();
 
 const printIdGamer = () =>{
     let gamer = inputJogador.value;
 
-    id_jogador.textContent = gamer;
+    name_jogador.forEach(jogador => jogador.textContent = gamer);
 }
 
 const tempoTotalDaPartida = () =>{
     tempo++;
     tempo = tempo < 10 ? `0${tempo}` : tempo;
 
-    timePartida.textContent = tempo;
-}
-
-const checkResolvedPromises = async () => {
-    let allPrimiseResolved = await Promise.all(rickAndMoryPromisses);
-
-    let cards = allPrimiseResolved.reduce((acc, {id, image, name }) => {
-        acc += `
-        <div class="card" data-img="${name}">
-            <div class="front">
-                <img src="image/rick-and-morty.jpg" alt="imagem-front">
-            </div>
-            <div class="back">
-                <img src="${image}" alt="${name}">
-            </div>
-        </div>
-        
-        <div class="card" data-img="${name}">
-            <div class="front">
-                <img src="image/rick-and-morty.jpg" alt="imagem-front">
-            </div>
-            <div class="back">
-                <img src="${image}" alt="${name}">
-            </div>
-        </div>
-        `
-
-        return acc
-    }, " ");
-
-    boxCards.innerHTML = cards;
+    timePartida.forEach(time => time.textContent = tempo);
 }
 
 const verificarCards = () =>{
@@ -86,10 +51,14 @@ const verificarCards = () =>{
         }, 1200);
     }else{
         let tempoPartida = cardsClosed--;
-        console.log(tempoPartida)
 
         if(tempoPartida === 1){
             clearInterval(cro);
+
+            setTimeout(() => {
+                windowModal.classList.add("active");
+                root.classList.remove("active");
+            }, 2000);
         }
     }
 
@@ -111,7 +80,7 @@ const compararCards = () =>{
                 front[index].classList.contains("ativo") || 
                 back[index].classList.contains("ativo")
 
-            if(elementoJaClicado) return
+            if(elementoJaClicado) return;
 
             if(arrPersonagem.length <= 1  && posicaoCard.length <= 1){
                 arrPersonagem.push(personagem);
@@ -126,18 +95,18 @@ const compararCards = () =>{
     })
 }
 
-btnPlay.addEventListener("click", (e) => {
+btnPlay.addEventListener("click", e => {
     e.preventDefault();
 
     const nomeGamer = inputJogador.value;
 
-    if (nomeGamer === "" || inputJogador.lenght <= 3) {
+    if (nomeGamer === "" || nomeGamer.length <= 3 || nomeGamer.length >= 15) {
         alert("Jogador Invalido tente novamente");
         inputJogador.focus();
         return
     }
 
-    checkResolvedPromises();
+    // jogadores.push(nomeGamer);
 
     printIdGamer();
 
@@ -150,6 +119,8 @@ btnPlay.addEventListener("click", (e) => {
 
     cro = setInterval(() => tempoTotalDaPartida(),1000);
 });
+
+recarregar.addEventListener("click",() => document.location.reload());
 
 
 
