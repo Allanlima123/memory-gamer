@@ -1,7 +1,5 @@
 "use strict";
 
-const getRickAndMory = id => `https://rickandmortyapi.com/api/character/${id}`;
-
 const btnPlay = document.querySelector(".btnPlay");
 const inputJogador = document.querySelector("#nameJogador");
 const root = document.querySelector(".root");
@@ -50,9 +48,9 @@ const verificarCards = () =>{
             back[posicao2].classList.remove("ativo");
         }, 1200);
     }else{
-        let tempoPartida = cardsClosed--;
+        let acertosCards = cardsClosed--;
 
-        if(tempoPartida === 1){
+        if(acertosCards === 1){
             clearInterval(cro);
 
             setTimeout(() => {
