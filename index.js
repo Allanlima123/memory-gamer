@@ -16,7 +16,6 @@ let tempo = 0;
 let cardsClosed = 10;
 let cro;
 
-// let jogadores = [];
 let arrPersonagem = [];
 let posicaoCard = [];
 
@@ -34,8 +33,8 @@ const tempoTotalDaPartida = () =>{
 }
 
 const verificarCards = () =>{
-    let front = document.querySelectorAll(".front");
-    let back = document.querySelectorAll(".back");
+    const front = document.querySelectorAll(".front");
+    const back = document.querySelectorAll(".back");
 
     let posicao1 = posicaoCard[0];
     let posicao2 = posicaoCard[1];
@@ -69,8 +68,8 @@ const compararCards = () =>{
     
     allcard.map((card,index) =>{
         card.addEventListener("click", () =>{
-            let front = document.querySelectorAll(".front");
-            let back = document.querySelectorAll(".back");
+            const front = document.querySelectorAll(".front");
+            const back = document.querySelectorAll(".back");
             
             let personagem = card.getAttribute("data-img");
 
@@ -103,8 +102,6 @@ btnPlay.addEventListener("click", e => {
         inputJogador.focus();
         return
     }
-
-    // jogadores.push(nomeGamer);
 
     printIdGamer();
 
