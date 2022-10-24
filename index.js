@@ -15,7 +15,7 @@ const recarregar = document.querySelector(".reload-gamer");
 const windowModal = document.querySelector("#box-modal");
 
 let tempo = 0;
-let cardsClosed = 10;
+let cardsClosed = 20;
 let cro;
 
 let arrPersonagem = [];
@@ -52,8 +52,6 @@ const gerarNumeroAleatorio = (min,max) =>{
 
 const checkResolvedPromises = async () => {
     let allPrimiseResolved = await Promise.all(rickAndMoryPromisses);
-
-    console.log(allPrimiseResolved)
 
     while(loop !== 20){
         let numGerado = gerarNumeroAleatorio(0,allPrimiseResolved.length - 1);
