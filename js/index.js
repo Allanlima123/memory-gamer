@@ -72,6 +72,8 @@ const checkResolvedPromises = async () => {
     }
 
     let newArray = [...arrayEmbaralhado,...arrayEmbaralhado02];
+    console.log(newArray)
+
 
     let cards = newArray.reduce((acc, { image, name }) => {
         acc += `
