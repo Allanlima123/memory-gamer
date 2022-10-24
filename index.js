@@ -1,5 +1,7 @@
 "use strict";
 
+const getRickAndMory = id => `https://rickandmortyapi.com/api/character/${id}`;
+
 const btnPlay = document.querySelector(".btnPlay");
 const inputJogador = document.querySelector("#nameJogador");
 const root = document.querySelector(".root");
@@ -18,6 +20,18 @@ let cro;
 
 let arrPersonagem = [];
 let posicaoCard = [];
+let arrayEmbaralhado = [];
+let arrayEmbaralhado02 = [];
+let loop = 0,index = 0;
+
+const buscarDadosPromises = () => Array(20)
+    .fill()
+    .map(async (_, index) => {
+        const retorno = await fetch(getRickAndMory(index + 1));
+        return await retorno.json();
+    })
+
+const rickAndMoryPromisses = buscarDadosPromises();
 
 const printIdGamer = () =>{
     let gamer = inputJogador.value;
@@ -31,6 +45,54 @@ const tempoTotalDaPartida = () =>{
 
     timePartida.forEach(time => time.textContent = tempo);
 }
+
+const gerarNumeroAleatorio = (min,max) =>{
+    return Math.floor(Math.random() * (max - min  + 1)) + min;
+}
+
+const checkResolvedPromises = async () => {
+    let allPrimiseResolved = await Promise.all(rickAndMoryPromisses);
+
+    console.log(allPrimiseResolved)
+
+    while(loop !== 20){
+        let numGerado = gerarNumeroAleatorio(0,allPrimiseResolved.length - 1);
+    
+        while(!(arrayEmbaralhado.includes(allPrimiseResolved[numGerado]))){
+            loop++;
+            arrayEmbaralhado.push(allPrimiseResolved[numGerado]);
+        };
+    }
+
+    while(index !== 20){
+        let numGerado = gerarNumeroAleatorio(0,allPrimiseResolved.length - 1);
+    
+        while(!(arrayEmbaralhado02.includes(allPrimiseResolved[numGerado]))){
+            index++;
+            arrayEmbaralhado02.push(allPrimiseResolved[numGerado]);
+        };
+    }
+
+    let newArray = [...arrayEmbaralhado,...arrayEmbaralhado02];
+
+    let cards = newArray.reduce((acc, { image, name }) => {
+        acc += `
+        <div class="card" data-img="${name}">
+            <div class="front">
+                <img src="image/rick-and-morty.jpg" alt="imagem-front">
+            </div>
+            <div class="back">
+                <img src="${image}" alt="${name}">
+            </div>
+        </div>
+        `
+
+        return acc
+    }, " ");
+
+    boxCards.innerHTML = cards;
+}
+
 
 const verificarCards = () =>{
     const front = document.querySelectorAll(".front");
@@ -103,6 +165,7 @@ btnPlay.addEventListener("click", e => {
         return
     }
 
+    checkResolvedPromises();
     printIdGamer();
 
     setTimeout(() => {
