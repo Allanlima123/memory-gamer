@@ -118,6 +118,13 @@
         max-width: 95%;
     }
 
+    .header{
+        margin:5px 0 10px 0;
+        height: 55px;
+        background: #d8d6d679;
+        padding: 0 30px;
+    }
+
     .box-cards .card{
         width: 60px;
         height: 70px;
