@@ -93,8 +93,29 @@
 }
 
 @media (max-width: 940px) {
+    .root{
+        margin: 5px 0;
+        max-width: 100%;
+    }
+
     .header div{
         font-size: 10px;
+    }
+
+    .box-cards .card{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .root{
+        max-width: 95%;
+    }
+
+    .box-cards .card{
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -105,7 +126,12 @@
     }
 
     .box-cards .card{
-        width: 40px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #box-modal{
+        width: 300px;
+        height: 150px;
     }
 }
